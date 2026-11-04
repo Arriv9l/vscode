@@ -3,44 +3,9 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Emitter } from 'vs/base/common/event';
-import { NotebookDocumentMetadata } from 'vs/workbench/contrib/notebook/common/notebookCommon';
-import { NotebookLayoutChangeEvent, NotebookLayoutInfo, CellViewModelStateChangeEvent, ICellViewModel } from 'vs/workbench/contrib/notebook/browser/notebookBrowser';
-import { Disposable } from 'vs/base/common/lifecycle';
-
-export enum NotebookViewEventType {
-	LayoutChanged = 1,
-	MetadataChanged = 2,
-	CellStateChanged = 3
-}
-
-export class NotebookLayoutChangedEvent {
-	public readonly type = NotebookViewEventType.LayoutChanged;
-
-	constructor(readonly source: NotebookLayoutChangeEvent, readonly value: NotebookLayoutInfo) {
-
-	}
-}
-
-
-export class NotebookMetadataChangedEvent {
-	public readonly type = NotebookViewEventType.MetadataChanged;
-
-	constructor(readonly source: NotebookDocumentMetadata) {
-
-	}
-}
-
-export class NotebookCellStateChangedEvent {
-	public readonly type = NotebookViewEventType.CellStateChanged;
-
-	constructor(readonly source: CellViewModelStateChangeEvent, readonly cell: ICellViewModel) {
-
-	}
-}
-
-
-export type NotebookViewEvent = NotebookLayoutChangedEvent | NotebookMetadataChangedEvent | NotebookCellStateChangedEvent;
+import { Emitter } from '../../../../../base/common/event.js';
+import { Disposable } from '../../../../../base/common/lifecycle.js';
+import { NotebookCellStateChangedEvent, NotebookLayoutChangedEvent, NotebookMetadataChangedEvent, NotebookViewEvent, NotebookViewEventType } from '../notebookViewEvents.js';
 
 export class NotebookEventDispatcher extends Disposable {
 	private readonly _onDidChangeLayout = this._register(new Emitter<NotebookLayoutChangedEvent>());

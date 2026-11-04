@@ -2,15 +2,16 @@
   "name": "clojure",
   "displayName": "%displayName%",
   "description": "%description%",
-  "version": "1.0.0",
+  "version": "10.0.0",
   "publisher": "vscode",
   "license": "MIT",
   "engines": {
     "vscode": "*"
   },
   "scripts": {
-    "update-grammar": "node ../node_modules/vscode-grammar-updater/bin atom/language-clojure grammars/clojure.cson ./syntaxes/clojure.tmLanguage.json"
+    "update-grammar": "node ../../node_modules/vscode-grammar-updater/bin atom/language-clojure grammars/clojure.cson ./syntaxes/clojure.tmLanguage.json"
   },
+  "categories": ["Programming Languages"],
   "contributes": {
     "languages": [
       {
@@ -36,7 +37,12 @@
         "scopeName": "source.clojure",
         "path": "./syntaxes/clojure.tmLanguage.json"
       }
-    ]
+    ],
+    "configurationDefaults": {
+      "[clojure]": {
+        "diffEditor.ignoreTrimWhitespace": false
+      }
+    }
   },
   "repository": {
     "type": "git",
